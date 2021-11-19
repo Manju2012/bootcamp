@@ -1,0 +1,1 @@
+gcloud dataproc clusters create cluster-2012 --region us-central1 --subnet subnet-1 --zone us-central1-c --master-machine-type n1-standard-2 --master-boot-disk-size 500 --num-workers 2 --worker-machine-type n1-standard-2 --worker-boot-disk-size 500 --image-version 2.0-debian10 --project btcmp-1 --metadata=block-project-ssh-keys=true

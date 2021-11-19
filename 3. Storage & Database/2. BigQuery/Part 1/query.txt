@@ -1,0 +1,21 @@
+select a.Year_partition as Partition,a.cnt as NumOfRowsInTable1,
+b.cnt as NumOfRowsInTabl
+e2,(b.cnt-a.cnt) as "Diff_of_rows 2 - 1"
+from
+(select distinct Year_partition,sum(cnt) as cnt 
+from
+    (select EXTRACT(Year FROM birthdate) AS Year_partition,count(*) as cnt 
+    FROM 
+    btcmp-1.data.mydata a
+    group by a.birthdate) a
+group by Year_partition) a
+
+join
+
+(select distinct Year_partition,sum(cnt) as cnt from
+    (select EXTRACT(Year FROM birthdate) AS Year_partition,count(*) as cnt
+    FROM 
+    btcmp-1.data.mydata2 a
+    group by a.birthdate)a
+group by Year_partition)b 
+on a.Year_partition=b.Year_partition

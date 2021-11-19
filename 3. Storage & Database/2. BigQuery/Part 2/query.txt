@@ -1,0 +1,28 @@
+CREATE TABLE btcmp-1.dataset.partitionedtable(trip_id integer,
+subscriber_type string,
+bikeid string,
+start_time timestamp,
+start_station_id int64,
+start_station_name string,
+end_station_id string,
+end_station_name string,
+duration_minutes integer)
+
+PARTITION BY date(start_time)
+CLUSTER BY start_station_name
+
+AS SELECT trip_id,
+subscriber_type,
+bikeid,
+start_time,
+start_station_id,
+start_station_name,
+end_station_id,
+end_station_name,
+duration_minutes FROM bigquery-public-data.austin_bikeshare.bikeshare_trips
+
+
+
+------------------------
+select * from btcmp-1.dataset.partitionedtable limit 100;
+

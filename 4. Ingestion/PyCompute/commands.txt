@@ -1,0 +1,23 @@
+1. create vm Instance with centos
+
+------ install python package----
+sudo yum install python3
+
+------ install postgresql----
+sudo yum install postgresql
+
+
+install all packages from code
+pip3 install --upgrade google-cloud-logging
+
+----- copying token key -------
+gcloud compute ssh py-compute
+cloud compute scp "/home/fagcpdebc1_09/ServiceAccountKeys/BigQuery/btcmp-1-569673e95ac5.json" py-compute:~/
+
+
+---- coonect SQL -----
+gcloud sql connect mypginstance
+
+
+---- install pythen-dev---
+sudo yum install python3-devel

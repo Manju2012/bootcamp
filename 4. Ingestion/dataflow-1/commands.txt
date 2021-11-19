@@ -1,0 +1,4 @@
+pip install apache_beam
+
+
+python3 main.py --runner DataFlowRunner --project btcmp-1 --temp_location gs://dataflow-p1/batch/temp --staging_location gs://dataflow-p1/batch/stag --region us-central1 --job_name job1 --max_num_workers=3

@@ -1,0 +1,5 @@
+------ upgrade pip -----
+ pip3 install --upgrade pip
+
+-------to run pipeline.py code ------
+python3 pipeline.py --streaming --runner DataflowRunner --project btcmp-1 --region us-central1 --temp_location gs://dataflow-p2/temp --job_name df-job2 --max_num_workers=3

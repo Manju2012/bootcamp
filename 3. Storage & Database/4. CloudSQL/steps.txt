@@ -1,0 +1,71 @@
+1. create db instance
+2. create database
+3. connect to cloud shell
+
+
+4. create dept table--
+
+CREATE TABLE Department(dept_id int NOT NULL,dept_name varchar(25),dept_head_id int,primary key(dept_id));
+
+----insert data
+INSERT INTO Department(dept_id, dept_name, dept_head_id)VALUES ('001', 'Production', '10');
+INSERT INTO Department(dept_id, dept_name, dept_head_id)VALUES ('002', 'HR', '10');
+INSERT INTO Department(dept_id, dept_name, dept_head_id)VALUES ('003', 'IT', '10');
+
+
+5. create employee table--
+
+CREATE TABLE Employee(emp_id int NOT NULL,name varchar(25),dept_id int,salary int,joining_date date,leaving_date date,is_active boolean,primary key(emp_id),FOREIGN KEY (dept_id) REFERENCES Department(dept_id))
+
+------insert data
+INSERT INTO Employee VALUES ('1','abc','001','20000','2014-02-15','2016-05-12','0'),
+('2','Saurabh','002','10000','2014-02-15','2016-05-12','0'),
+('3','Swati','003','20000','2014-12-31','2016-05-12','1'),
+('4','Manjunath','001','40000','2013-04-27','2017-09-18','0'),
+('5','Charan','001','80000','2016-06-16','2019-05-12','1'),
+('6','Ruchita','002','90000','2017-07-14','2018-09-21','0'),
+('7','Venkat','002','80000','2010-08-17','2016-05-12','1'),
+('8','Priya','002','40000','2019-09-07','2020-01-12','0'),
+('9','Athar','001','80000','2019-04-05','2021-05-12','1'),
+('10','Geet','001','60000','2018-11-03','2021-05-12','1'),
+('11','Chetan','001','7000','2018-03-05','2019-04-19','0'),
+('12','Hariom','003','60000','2017-02-26','2020-05-12','1'),
+('13','Maneu','003','7000','2020-01-23','2021-07-10','0'),
+('14','Adam','002','80000','2020-09-20','2021-05-12','1'),
+('15','Honey','003','20000','2021-06-14','2012-07-02','0')
+;
+
+
+
+6. create table project ---
+
+CREATE TABLE Project(proj_id int NOT NULL,proj_name varchar(25),dept_id int,proj_start_date date,proj_end_date date,primary key(proj_id),FOREIGN KEY (dept_id) REFERENCES Department(dept_id));
+
+-----insert data
+INSERT INTO Project(proj_id, proj_name, dept_id,proj_start_date,proj_end_date)VALUES ('111', 'D Bank Auth', '003', '2012-04-12', '2020-09-18');
+INSERT INTO Project(proj_id, proj_name, dept_id,proj_start_date,proj_end_date)VALUES ('222', 'Flexible Frame', '002', '2015-03-02', '2019-06-18');
+INSERT INTO Project(proj_id, proj_name, dept_id,proj_start_date,proj_end_date)VALUES ('333', 'SecureDrive', '001', '2014-05-29', '2016-03-17');
+
+
+7. create table project_staff ---
+
+CREATE TABLE Project_staff(proj_id int,emp_id int,role_name varchar(25),start_date date,end_date date,FOREIGN KEY (proj_id) REFERENCES Project(proj_id),FOREIGN KEY (emp_id) REFERENCES Employee(emp_id));
+
+
+----data insert
+INSERT INTO Project_Staff(proj_id, emp_id, role_name,start_date,end_date)VALUES ('111', '11', 'Manager', '2018-03-05','2019-04-19');
+INSERT INTO Project_Staff(proj_id, emp_id, role_name,start_date,end_date)VALUES ('222', '5', 'Analyst', '2016-06-16',null);
+INSERT INTO Project_Staff(proj_id, emp_id, role_name,start_date,end_date)VALUES ('333', '6', 'Team Lead', '2017-07-14','2018-09-21');
+INSERT INTO Project_Staff(proj_id, emp_id, role_name,start_date,end_date)VALUES ('333', '4', 'Tester', '2013-04-27','2017-09-18');
+INSERT INTO Project_Staff(proj_id, emp_id, role_name,start_date,end_date)VALUES ('222', '15', 'Data Engineer', '2021-06-14','2012-07-02');
+INSERT INTO Project_Staff(proj_id, emp_id, role_name,start_date,end_date)VALUES ('111', '7', 'Office', '2010-08-17',null);
+INSERT INTO Project_Staff(proj_id, emp_id, role_name,start_date,end_date)VALUES ('111', '3', 'Associate', '2014-12-31',null);
+INSERT INTO Project_Staff(proj_id, emp_id, role_name,start_date,end_date)VALUES ('222', '1', 'Director', '2012-04-12',null);
+INSERT INTO Project_Staff(proj_id, emp_id, role_name,start_date,end_date)VALUES ('333', '12', 'Intern', '2017-02-26',null);
+INSERT INTO Project_Staff(proj_id, emp_id, role_name,start_date,end_date)VALUES ('222', '2', 'Clerk', '2014-02-15','2016-05-12');
+
+
+-----------commands--------------
+\c myorg --> to swith to myorg database
+\l --> for database detail
+\dt --> to show tables

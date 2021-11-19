@@ -1,0 +1,21 @@
+-----------------pubsub---------------------
+
+pip install google-cloud
+
+
+--create topic--
+gcloud pubsub topics create topic1
+
+--create 2 subscriptions--
+gcloud pubsub subscriptions create sub1 --topic=topic1 --expiration-period=2592000
+gcloud pubsub subscriptions create sub2 --topic=topic1 --expiration-period=2592000
+
+
+--publish 5 msgs--
+gcloud pubsub topics publish topic1 --message={"id":1,"name":"msg1"}
+gcloud pubsub topics publish topic1 --message={"id":2,"name":"msg3"}
+gcloud pubsub topics publish topic1 --message={"id":3,"name":"msg3"}
+gcloud pubsub topics publish topic1 --message={"id":4,"name":"msg4"}
+gcloud pubsub topics publish topic1 --message={"id":5,"name":"msg5"}
+
+

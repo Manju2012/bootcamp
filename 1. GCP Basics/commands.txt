@@ -1,0 +1,41 @@
+gcloud compute project-info add-metadata \
+   --metadata google-compute-default-region=us-central,google-compute-default-zone=us-central-a
+
+
+---------auth login ---------
+gcloud auth login
+
+
+--------set config ---------------
+gcloud config set project btcmp-1
+gcloud config set compute/region us-central
+gcloud config set compute/zone us-central-a
+
+
+---------get config ----------
+gcloud config get-value compute/region
+gcloud config get-value compute/zone
+
+gcloud config list
+
+
+------- init -----------
+gcloud init
+
+
+--------- create VM -------
+gcloud compute instances create instance-1 --machine-type=f1-micro
+
+
+---------for ssh key-------------
+gcloud beta compute ssh --zone "us-central1-a" "instance-1"  --tunnel-through-iap --project "btcmp-1"
+gcloud beta compute ssh --zone "us-central1-a" "instance-2"  --tunnel-through-iap --project "btcmp-1"
+
+
+--------- file copy---------------
+gcloud compute scp msnfile instance-2:~/
+
+
+
+
+

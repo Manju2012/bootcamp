@@ -1,0 +1,4 @@
+BUCKET: us-cloud-func
+DATASET: cloud_func
+TABLE: table1
+VERSION: v14

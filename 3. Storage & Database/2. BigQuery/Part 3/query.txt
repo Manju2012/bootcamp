@@ -1,0 +1,14 @@
+
+create view dataset.bq3 
+as 
+    (select homeTeamName,case when EXTRACT(DAYOFWEEK from starttime)>6 then 'Weekend' else 'weekday' end as day ,round(sum(attendance)/count(*),2) average_attendance
+    from bigquery-public-data.baseball.schedules
+    where status='closed'
+    group by homeTeamName,case when EXTRACT(DAYOFWEEK from starttime)>6 then 'Weekend' else 'weekday' end) ;
+
+--------------
+select homeTeamName,case when EXTRACT(DAYOFWEEK from starttime)>6 then 'Weekend' else 'weekday' end as day ,round(sum(attendance)/count(*),2) average_attendance
+from bigquery-public-data.baseball.schedules
+where status='closed'
+group by homeTeamName,case when EXTRACT(DAYOFWEEK from starttime)>6 then 'Weekend' else 'weekday' end ;
+

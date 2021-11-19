@@ -1,0 +1,63 @@
+SELECT * FROM `btcmp-1.btcmp_step4.netflix_data` LIMIT 1000;
+
+-- SQL: Find out the number of titles in each Country Availability grouped by Runtime--
+select Country_Availability,count(title),runtime from btcmp-1.btcmp_step4.netflix_data
+group by Country_Availability,runtime
+order by runtime desc;
+
+
+-- SQL: Find out Number of Titles against each actor. Should cover all actors available in data------
+select actors,count(title) from btcmp-1.btcmp_step4.netflix_data
+group by actors;
+
+
+-----SQL : Find out the number of Titles for each Genre. Should cover all genres available in data ----
+select genre,count(title) from btcmp-1.btcmp_step4.netflix_data
+group by genre;
+
+
+---SQL: Find out the number of Titles available in each country by Genre.------
+select genre,Country_Availability,count(title) from btcmp-1.btcmp_step4.netflix_data
+group by genre,Country_Availability
+order by Country_Availability;
+
+
+---SQL: Find out top 3 Box Office grossers for each year: Release Year, Title, Box Office, Actors, Genre ------
+select EXTRACT (year from NetflixReleaseDate),Title,Boxoffice,Actors,Genre
+from btcmp-1.btcmp_step4.netflix_data
+order by Boxoffice desc
+limit 3;
+
+
+
+
+------ table ------------
+Title:STRING,
+Genre:STRING,
+Tags:STRING,
+Languages:STRING,
+Series_or_Movie:STRING,
+Hidden_Gem_Score:FLOAT,
+Country_Availability:STRING,
+Runtime:STRING,
+Director:STRING,
+Writer:STRING,
+Actors:STRING,
+View_Rating:STRING,
+IMDb_Score:FLOAT,
+Rotten_Tomatoes_Score:FLOAT,
+Metacritic_Score:FLOAT,
+Awards_Received:FLOAT,
+Awards_Nominated_For:FLOAT,
+Boxoffice:INTEGER,
+Release_Date:DATE,
+Netflix_Release_Date:DATE,
+Production_House:STRING,
+Netflix_Link:STRING,
+IMDb_Link:STRING,
+Summary:STRING,
+IMDb_Votes:FLOAT,
+Image:STRING,
+Poster:STRING,
+TMDb_Trailer:STRING,
+Trailer_Site:STRING

@@ -1,0 +1,32 @@
+--------make a google cloud storage bucket---------
+gsutil mb gs://ustestbucket
+
+-----------make a big query dataset-----------------
+bq mk --dataset btcmp-1:cloud_func
+
+----Make a table within that dataset to match the CSV schema----
+bq mk --table cloud_func.table1 Name:STRING,Own_House:BOOL,Country:STRING,Zip_Code:INTEGER,Year:INTEGER,Time:STRING,Longitude:FLOAT,Latitude:FLOAT
+
+
+----------run main.py as-------------
+gcloud beta functions deploy us_csv_loader --runtime python37 --trigger-resource gs://us-cloud-func --trigger-event=google.storage.object.finalize --entry-point csv_loader --env-vars-file=environment.yaml
+
+
+----- to copy file to gs ---------
+gsutil cp f1.csv gs://us-cloud-func/
+
+
+------- to read func logs --------
+gcloud functions logs read
+
+
+
+
+Name:STRING,
+Own_House:BOOLEAN,
+Country:STRING,
+Zip_Code:INTEGER,
+Year:INTEGER,
+Time:STRING,
+Longitude:FLOAT,
+Latitude:FLOAT
